@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Zanare Game</title>
+</head>
+<body style="text-align:center; background:#222; color:white;">
+    <h1>بەخێربێیت بۆ یاری زانست</h1>
+    <p>ئەمە یەکەم هەنگاوی یارییەکەیە!</p>
+    <button onclick="alert('دەستخۆش! یارییەکە کار دەکات')">کلیک بکە</button>
+</body>
+</html>
