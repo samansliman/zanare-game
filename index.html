@@ -2,14 +2,71 @@
 <html lang="ku" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>Zanare Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>یاری زانیاری</title>
     <style>
-        body { margin: 0; padding: 0; overflow: hidden; }
-        iframe { border: none; width: 100vw; height: 100vh; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .game-container { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 90%; max-width: 400px; text-align: center; }
+        h1 { color: #1a73e8; }
+        .question { font-size: 1.2rem; margin-bottom: 20px; font-weight: bold; }
+        .options { display: grid; gap: 10px; }
+        button { padding: 12px; border: none; border-radius: 8px; background-color: #e4e6eb; cursor: pointer; font-size: 1rem; transition: 0.3s; }
+        button:hover { background-color: #d8dadf; }
+        .score { margin-top: 20px; font-size: 1rem; color: #555; }
     </style>
 </head>
 <body>
-    <iframe src="https://ai.studio/apps/0560ce61-75..."></iframe>
+
+<div class="game-container">
+    <h1>یاری زانیاری</h1>
+    <div id="game">
+        <div class="question" id="question">بارەگای سەرەکی گۆگڵ لە کام وڵاتەیە؟</div>
+        <div class="options" id="options">
+            <button onclick="checkAnswer(0)">ئەمریکا</button>
+            <button onclick="checkAnswer(1)">بەریتانیا</button>
+            <button onclick="checkAnswer(2)">ئەڵمانیا</button>
+        </div>
+    </div>
+    <div class="score" id="score">خاڵەکان: 0</div>
+</div>
+
+<script>
+    const questions = [
+        { q: "پایتەختی کوردستان کوێیە؟", a: ["هەولێر", "سلێمانی", "دهۆک"], c: 0 },
+        { q: "گەورەترین کیشوەر کامەیە؟", a: ["ئەوروپا", "ئاسیا", "ئەفریقا"], c: 1 },
+        { q: "ئاڵای کوردستان لە چەند ڕەنگ پێکهاتووە؟", a: ["2", "3", "4"], c: 2 }
+    ];
+
+    let currentQ = 0;
+    let score = 0;
+
+    function checkAnswer(index) {
+        if(index === questions[currentQ].c) {
+            score++;
+            alert("ڕاستە! ئافەرم");
+        } else {
+            alert("هەڵەیە! هەوڵبدەرەوە");
+        }
+        
+        currentQ++;
+        if(currentQ < questions.length) {
+            updateQuestion();
+        } else {
+            document.getElementById('game').innerHTML = "<h2>یارییەکە کۆتایی هات!</h2>";
+        }
+        document.getElementById('score').innerText = "خاڵەکان: " + score;
+    }
+
+    function updateQuestion() {
+        document.getElementById('question').innerText = questions[currentQ].q;
+        const buttons = document.querySelectorAll('.options button');
+        buttons.forEach((btn, i) => {
+            btn.innerText = questions[currentQ].a[i];
+        });
+    }
+</script>
+
 </body>
 </html>
+
 
